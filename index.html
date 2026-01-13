@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Port-Light Demo – M001692</title>
+  <meta name="description" content="3D model and exploded view preview for exhibition demo." />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #121826;
+      --text: #e8eefc;
+      --muted: #a9b6d1;
+      --accent: #4ea1ff;
+      --border: rgba(255,255,255,0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(78,161,255,0.15), transparent 60%),
+                  radial-gradient(900px 600px at 80% 20%, rgba(142,86,255,0.12), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px 16px 48px;
+    }
+    header {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 2px 18px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 750;
+      letter-spacing: 0.2px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+    }
+    .card h2 {
+      margin: 0;
+      padding: 14px 16px 0;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+    .card p {
+      margin: 8px 0 0;
+      padding: 0 16px 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .viewer {
+      height: 520px;
+    }
+    model-viewer {
+      width: 100%;
+      height: 520px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0));
+    }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      padding: 12px 16px 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 650;
+      cursor: pointer;
+      transition: transform .08s ease, background .12s ease;
+      user-select: none;
+    }
+    .btn:hover { background: rgba(255,255,255,0.10); }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary {
+      border-color: rgba(78,161,255,0.55);
+      background: rgba(78,161,255,0.15);
+    }
+    .pill {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border: 1px dashed rgba(255,255,255,0.16);
+      border-radius: 12px;
+    }
+    .img {
+      width: 100%;
+      display: block;
+      border-top: 1px solid var(--border);
+    }
+    .specs {
+      padding: 12px 16px 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+    li { margin: 6px 0; }
+    footer {
+      margin-top: 14px;
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      padding: 10px 2px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      color: #d7e7ff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="title">Port-Light Demo – <span style="color:var(--accent)">M001692</span></div>
+        <div class="subtitle">Scan-to-view 3D model (opens in any modern mobile browser)</div>
+      </div>
+      <div class="pill">Tip: pinch to zoom • drag to rotate</div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Interactive 3D Model</h2>
+        <p>Rotate, zoom and inspect the model directly in the browser. No app required.</p>
+
+        <model-viewer id="mv"
+          src="assets/M001692.glb"
+          camera-controls
+          touch-action="pan-y"
+          auto-rotate
+          rotation-per-second="18deg"
+          exposure="1.0"
+          shadow-intensity="0.6"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          alt="3D model: M001692">
+          <div slot="poster" style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);">
+            Loading 3D model…
+          </div>
+        </model-viewer>
+
+        <div class="toolbar">
+          <button class="btn primary" id="btn-rotate">Toggle auto-rotate</button>
+          <button class="btn" id="btn-reset">Reset view</button>
+          <button class="btn" id="btn-ar">View in AR (if supported)</button>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2>Exploded View</h2>
+        <p>Static exploded preview (we can later add an “Exploded 3D” button using a second GLB).</p>
+        <img class="img" src="assets/exploded.jpg" alt="Exploded view placeholder" />
+
+        <div class="specs">
+          <strong style="color:var(--text)">Technical Overview (demo)</strong>
+          <ul>
+            <li>Marine port-light / window assembly</li>
+            <li>Designed for exhibition demo flow</li>
+            <li>Replace this text with the real product highlights</li>
+          </ul>
+          <div style="margin-top:10px;">
+            Files in this demo folder:
+            <ul>
+              <li><code>M001692.glb</code> — 168.27 MB</li><li><code>M001692.gltf</code> — 0.15 MB</li><li><code>exploded.jpg</code> — 0.05 MB</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Hosting note: upload this folder to a simple static host (Netlify / GitHub Pages). Then generate a QR pointing to the final URL.
+    </footer>
+  </div>
+
+  <script>
+    const mv = document.getElementById('mv');
+    const btnRotate = document.getElementById('btn-rotate');
+    const btnReset = document.getElementById('btn-reset');
+    const btnAR = document.getElementById('btn-ar');
+
+    btnRotate.addEventListener('click', () => {
+      mv.autoRotate = !mv.autoRotate;
+    });
+
+    btnReset.addEventListener('click', () => {
+      mv.cameraOrbit = "auto auto auto";
+      mv.fieldOfView = "auto";
+      mv.jumpCameraToGoal();
+    });
+
+    btnAR.addEventListener('click', async () => {
+      // model-viewer will handle AR availability; on unsupported devices this will no-op.
+      try {
+        await mv.activateAR();
+      } catch (e) {
+        alert("AR is not supported on this device/browser.");
+      }
+    });
+  </script>
+</body>
+</html>
